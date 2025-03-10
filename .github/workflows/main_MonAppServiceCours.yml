@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_71bfd6545ab444f9a90595a80e8258fa }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_620b39219792459793f177c44914060c }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_0a91e082f2354553854f52388a40a356 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_f732054e9d2d47f38b96efcafd2a4572 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_71bfd6545ab444f9a90595a80e8258fa }}/ vue-app:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0a91e082f2354553854f52388a40a356 }}/appsvc:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'MonAppServiceCours'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_0151c95d67c14e6699703fc384005dbf }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_71bfd6545ab444f9a90595a80e8258fa }}/ vue-app:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b24aed2ad7f442a2b46e4b6357ee18ee }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0a91e082f2354553854f52388a40a356 }}/appsvc:${{ github.sha }}'
