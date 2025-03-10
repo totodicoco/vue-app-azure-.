@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0a91e082f2354553854f52388a40a356 }}/appsvc:${{ github.sha }}
+        tags: index.docker.io/todio/appsvc:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'MonAppServiceCours'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_b24aed2ad7f442a2b46e4b6357ee18ee }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0a91e082f2354553854f52388a40a356 }}/appsvc:${{ github.sha }}'
+        images: 'index.docker.io/todio/appsvc:${{ github.sha }}'
